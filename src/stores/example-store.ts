@@ -1,19 +1,30 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
+import { ref } from 'vue';
+import { Status } from '../interfaces/statusInterface';
+import { Tarefas } from 'src/interfaces/tarefasInterface';
 
-export const useCounterStore = defineStore('counter', {
-  state: () => ({
-    counter: 0,
-  }),
+export const useCounterStore = defineStore('counter', () => {
+  const status = ref<Status>({
+    id: 0,
+    titulo: '',
+    tarefas: [] as Tarefas[],
+  });
 
-  getters: {
-    doubleCount: (state) => state.counter * 2,
-  },
+  const statusList = ref<Status[]>([]);
 
-  actions: {
-    increment() {
-      this.counter++;
-    },
-  },
+  const tarefa = ref<Tarefas>({
+    titulo: '',
+    descricao: '',
+    statusId: 0,
+  });
+
+  const adicionaTarefa = (tarefa: Tarefas) => {
+    const statusEncontrado = statusList.value.find((s) => s.id === tarefa.statusId);
+
+    if (statusEncontrado) {
+      statusEncontrado.tarefas.push(tarefa);
+    }
+  };
 });
 
 if (import.meta.hot) {
