@@ -38,11 +38,11 @@
 
 <script setup lang="ts">
 import StatusCard from 'src/components/StatusCard.vue';
-import AdicionaTarefaDialog from 'src/components/AdicionarTarefaDialog.vue';
+import draggable from 'vuedraggable';
 import TarefaCard from 'src/components/TarefaCard.vue';
+import AdicionaTarefaDialog from 'src/components/AdicionarTarefaDialog.vue';
 import { useMainStore } from 'src/stores/main.store';
 import { storeToRefs } from 'pinia';
-import draggable from 'vuedraggable';
 import { ref } from 'vue';
 
 const drag = ref(false);
