@@ -1,36 +1,60 @@
-# Quasar App (projectfabricasot)
+# Projeto Tarefas Fábrica
 
-A Quasar Project
-## Install the dependencies
+Este é um projeto desenvolvido com o [Quasar Framework](https://quasar.dev/) utilizando Vue 3, TypeScript e Pinia. A aplicação consiste em um gerenciador de tarefas estilo Kanban, contando com a funcionalidade de arrastar e soltar (drag and drop) através da biblioteca `vuedraggable`.
+
+## Tecnologias e Bibliotecas Principais
+
+- **Vue 3**
+- **Quasar Framework** (Vite)
+- **TypeScript**
+- **Pinia** (Gerenciamento de Estado)
+- **Vue Router** (Roteamento)
+- **vuedraggable** (Drag & Drop de tarefas)
+
+## Como rodar o projeto localmente
+
+### Pré-requisitos
+Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
+É recomendado o uso do gerenciador de pacotes **Yarn**.
+
+### 1. Instalação das dependências
+
 ```bash
-yarn
-# or
-npm install
+yarn install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### 2. Rodar o servidor de desenvolvimento com Hot-Reload
+
+```bash
+yarn dev
+```
+ou de forma nativa com a CLI do Quasar:
 ```bash
 quasar dev
 ```
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+### 3. Build para produção
 
-### Format the files
 ```bash
-yarn format
-# or
-npm run format
+yarn build
 ```
-
-### Build the app for production
+ou
 ```bash
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+## Scripts Adicionais
+
+### Formatador de Código (Prettier)
+
+Para formatar o código:
+```bash
+yarn format
+```
+
+### Linter (ESLint)
+
+Para rodar o linter:
+```bash
+yarn lint
+```
