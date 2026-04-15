@@ -9,7 +9,7 @@
     >
       <q-card-section class="q-pa-sm row items-center text-weight-medium text-grey-8">
         <q-icon name="add" size="sm" class="q-mr-sm" />
-        Adicionar outra lista
+        Adicionar Status
       </q-card-section>
     </q-card>
 
