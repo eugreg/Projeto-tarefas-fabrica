@@ -1,9 +1,9 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { ref } from 'vue';
-import { Status } from '../interfaces/statusInterface';
-import { Tarefas } from 'src/interfaces/tarefasInterface';
+import type { Status } from '../interfaces/statusInterface';
+import type { Tarefas } from 'src/interfaces/tarefasInterface';
 
-export const useCounterStore = defineStore('counter', () => {
+export const useMainStore = defineStore('mainStore', () => {
   const status = ref<Status>({
     id: 0,
     titulo: '',
@@ -25,8 +25,11 @@ export const useCounterStore = defineStore('counter', () => {
       statusEncontrado.tarefas.push(tarefa);
     }
   };
-});
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCounterStore, import.meta.hot));
-}
+  return {
+    tarefa,
+    status,
+    statusList,
+    adicionaTarefa,
+  };
+});

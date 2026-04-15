@@ -1,4 +1,4 @@
-import { Tarefas } from './tarefasInterface';
+import type { Tarefas } from './tarefasInterface';
 
 export interface Status {
   id: number;
