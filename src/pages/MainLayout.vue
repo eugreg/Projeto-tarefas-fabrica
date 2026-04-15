@@ -9,10 +9,18 @@
     </q-header>
 
     <q-page-container>
-      <q-page class="q-pa-lg">
-        <div class="row q-col-gutter-lg justify-start items-start">
-          <div class="col-12 col-md-4 col-lg-3" v-for="status in statusList" :key="status.id">
-            <StatusCard :status="status" @click="openDialog(status.id)">
+      <q-page>
+        <!-- Horizontal scroll wrapper for the board -->
+        <div
+          class="row no-wrap items-start q-pa-md q-gutter-md"
+          style="overflow-x: auto; min-height: calc(100vh - 50px)"
+        >
+          <div
+            v-for="status in statusList"
+            :key="status.id"
+            style="min-width: 320px; max-width: 320px"
+          >
+            <StatusCard :status="status" @click.self="openDialog(status.id)">
               <draggable
                 v-model="status.tarefas"
                 group="tarefas"
@@ -29,6 +37,8 @@
               </draggable>
             </StatusCard>
           </div>
+
+          <AdicionarStatusCard />
         </div>
       </q-page>
     </q-page-container>
@@ -41,6 +51,7 @@ import StatusCard from 'src/components/StatusCard.vue';
 import draggable from 'vuedraggable';
 import TarefaCard from 'src/components/TarefaCard.vue';
 import AdicionaTarefaDialog from 'src/components/AdicionarTarefaDialog.vue';
+import AdicionarStatusCard from 'src/components/AdicionarStatusCard.vue';
 import { useMainStore } from 'src/stores/main.store';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
