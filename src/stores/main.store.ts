@@ -56,9 +56,10 @@ export const useMainStore = defineStore('mainStore', () => {
     const statusEncontrado = statusList.value.find((s) => s.id === tarefa.statusId);
 
     if (tarefa.id) {
-      const index = statusEncontrado?.tarefas.findIndex((t) => t.id === tarefa.id);
+      const index = statusList.value.findIndex((s) => s.tarefas.find((t) => t.id === tarefa.id));
       if (index !== undefined && index !== -1) {
-        statusEncontrado?.tarefas.splice(index, 1);
+        console.debug(index);
+        statusList.value[index]?.tarefas.splice(index, 1);
       }
     }
 
