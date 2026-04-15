@@ -17,7 +17,7 @@
                 v-model="status.tarefas"
                 group="tarefas"
                 item-key="id"
-                class="min-h-[50px]"
+                class="min-h-[100px]"
                 @start="drag = true"
                 @end="drag = false"
               >
