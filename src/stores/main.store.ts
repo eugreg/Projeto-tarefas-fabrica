@@ -1,4 +1,4 @@
-import { defineStore, acceptHMRUpdate } from 'pinia';
+import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Status } from '../interfaces/statusInterface';
 import type { Tarefas } from 'src/interfaces/tarefasInterface';
@@ -10,7 +10,23 @@ export const useMainStore = defineStore('mainStore', () => {
     tarefas: [] as Tarefas[],
   });
 
-  const statusList = ref<Status[]>([]);
+  const statusList = ref<Status[]>([
+    {
+      id: 1,
+      titulo: 'A Fazer',
+      tarefas: [],
+    },
+    {
+      id: 2,
+      titulo: 'Em Andamento',
+      tarefas: [],
+    },
+    {
+      id: 3,
+      titulo: 'Concluído',
+      tarefas: [],
+    },
+  ]);
 
   const tarefa = ref<Tarefas>({
     titulo: '',
