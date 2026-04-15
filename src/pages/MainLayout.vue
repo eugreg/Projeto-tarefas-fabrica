@@ -19,7 +19,7 @@
             :key="status.id"
             style="min-width: 320px; max-width: 320px"
           >
-            <StatusCard :status="status" @click.self="openDialog(status.id)">
+            <StatusCard :status="status" @click="openDialog(status.id)">
               <draggable
                 v-model="status.tarefas"
                 group="tarefas"
