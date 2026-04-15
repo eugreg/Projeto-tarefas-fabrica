@@ -1,25 +1,42 @@
 <template>
-  <q-layout>
+  <q-layout class="bg-blue-grey-1">
+    <q-header class="bg-white text-dark shadow-1">
+      <q-toolbar class="q-py-sm">
+        <q-icon name="view_kanban" size="md" color="primary" class="q-mr-sm" />
+        <q-toolbar-title class="text-h6 text-weight-bold">
+          Quadro de Tarefas
+        </q-toolbar-title>
+        <q-btn flat round icon="add" color="primary" @click="dialog = true" v-if="false" />
+      </q-toolbar>
+    </q-header>
+
     <q-page-container>
-      <q-page class="q-pa-md">
-        <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-4" v-for="status in statusList" :key="status.id">
-            <StatusCard :status="status" @click="adicionaTarefa" />
+      <q-page class="q-pa-lg">
+        <div class="row q-col-gutter-lg justify-start items-start">
+          <div class="col-12 col-md-4 col-lg-3" v-for="status in statusList" :key="status.id">
+            <StatusCard :status="status" @click="openDialog(status.id)">
+              <div v-for="tarefa in status.tarefas" :key="tarefa.id" @click="editaTarefa(tarefa)">
+                <TarefaCard :title="tarefa.titulo" :descricao="tarefa.descricao ?? ''" />
+              </div>
+            </StatusCard>
           </div>
         </div>
       </q-page>
     </q-page-container>
+    <AdicionaTarefaDialog v-model="dialog" :layout="dialog" @update:layout="closeDialog" />
   </q-layout>
 </template>
 
 <script setup lang="ts">
 import StatusCard from 'src/components/StatusCard.vue';
+import AdicionaTarefaDialog from 'src/components/AdicionarTarefaDialog.vue';
+import TarefaCard from 'src/components/TarefaCard.vue';
 import { useMainStore } from 'src/stores/main.store';
 import { storeToRefs } from 'pinia';
 
 const store = useMainStore();
 
-const { statusList } = storeToRefs(store);
+const { statusList, dialog } = storeToRefs(store);
 
-const { adicionaTarefa } = store;
+const { openDialog, closeDialog, editaTarefa } = store;
 </script>
