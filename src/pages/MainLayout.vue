@@ -10,7 +10,6 @@
 
     <q-page-container>
       <q-page>
-        <!-- Horizontal scroll wrapper for the board -->
         <div
           class="row no-wrap items-start q-pa-md q-gutter-md"
           style="overflow-x: auto; min-height: calc(100vh - 50px)"
