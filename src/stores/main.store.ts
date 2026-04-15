@@ -53,21 +53,25 @@ export const useMainStore = defineStore('mainStore', () => {
   };
 
   const adicionaTarefa = (tarefa: Tarefas) => {
-    const statusEncontrado = statusList.value.find((s) => s.id === tarefa.statusId);
+    removeTarefa(tarefa);
 
-    if (tarefa.id) {
-      const index = statusList.value.findIndex((s) => s.tarefas.find((t) => t.id === tarefa.id));
-      if (index !== undefined && index !== -1) {
-        console.debug(index);
-        statusList.value[index]?.tarefas.splice(index, 1);
-      }
+    const statusDestino = statusList.value.find((s) => s.id === tarefa.statusId);
+
+    if (statusDestino) {
+      tarefa.id = tarefa.id ?? Date.now();
+      statusDestino.tarefas.push(tarefa);
     }
 
-    if (statusEncontrado) {
-      tarefa.id = statusEncontrado.tarefas.length + 1;
-      statusEncontrado.tarefas.push(tarefa);
-    }
     closeDialog();
+  };
+
+  const removeTarefa = (tarefa: Tarefas) => {
+    statusList.value.forEach((status) => {
+      const index = status.tarefas.findIndex((t) => t.id === tarefa.id);
+      if (index !== -1) {
+        status.tarefas.splice(index, 1);
+      }
+    });
   };
 
   const editaTarefa = (tarefaedit: Tarefas) => {

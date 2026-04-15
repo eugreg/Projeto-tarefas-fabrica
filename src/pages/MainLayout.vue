@@ -3,9 +3,7 @@
     <q-header class="bg-white text-dark shadow-1">
       <q-toolbar class="q-py-sm">
         <q-icon name="view_kanban" size="md" color="primary" class="q-mr-sm" />
-        <q-toolbar-title class="text-h6 text-weight-bold">
-          Quadro de Tarefas
-        </q-toolbar-title>
+        <q-toolbar-title class="text-h6 text-weight-bold"> Quadro de Tarefas </q-toolbar-title>
         <q-btn flat round icon="add" color="primary" @click="dialog = true" v-if="false" />
       </q-toolbar>
     </q-header>
@@ -15,9 +13,20 @@
         <div class="row q-col-gutter-lg justify-start items-start">
           <div class="col-12 col-md-4 col-lg-3" v-for="status in statusList" :key="status.id">
             <StatusCard :status="status" @click="openDialog(status.id)">
-              <div v-for="tarefa in status.tarefas" :key="tarefa.id" @click="editaTarefa(tarefa)">
-                <TarefaCard :title="tarefa.titulo" :descricao="tarefa.descricao ?? ''" />
-              </div>
+              <draggable
+                v-model="status.tarefas"
+                group="tarefas"
+                item-key="id"
+                class="min-h-[50px]"
+                @start="drag = true"
+                @end="drag = false"
+              >
+                <template #item="{ element: tarefa }">
+                  <div @click="editaTarefa(tarefa)" class="cursor-pointer q-mb-sm">
+                    <TarefaCard :title="tarefa.titulo" :descricao="tarefa.descricao ?? ''" />
+                  </div>
+                </template>
+              </draggable>
             </StatusCard>
           </div>
         </div>
@@ -33,6 +42,10 @@ import AdicionaTarefaDialog from 'src/components/AdicionarTarefaDialog.vue';
 import TarefaCard from 'src/components/TarefaCard.vue';
 import { useMainStore } from 'src/stores/main.store';
 import { storeToRefs } from 'pinia';
+import draggable from 'vuedraggable';
+import { ref } from 'vue';
+
+const drag = ref(false);
 
 const store = useMainStore();
 
