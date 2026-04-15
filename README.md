@@ -14,8 +14,13 @@ Este é um projeto desenvolvido com o [Quasar Framework](https://quasar.dev/) ut
 ## Como rodar o projeto localmente
 
 ### Pré-requisitos
+
 Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
 É recomendado o uso do gerenciador de pacotes **Yarn**.
+
+### Link do projeto
+
+[Projeto Tarefas Fábrica](https://github.com/eugreg/Projeto-tarefas-fabrica.git)
 
 ### 1. Instalação das dependências
 
@@ -28,7 +33,9 @@ yarn install
 ```bash
 yarn dev
 ```
+
 ou de forma nativa com a CLI do Quasar:
+
 ```bash
 quasar dev
 ```
@@ -38,7 +45,9 @@ quasar dev
 ```bash
 yarn build
 ```
+
 ou
+
 ```bash
 quasar build
 ```
@@ -48,6 +57,7 @@ quasar build
 ### Formatador de Código (Prettier)
 
 Para formatar o código:
+
 ```bash
 yarn format
 ```
@@ -55,6 +65,7 @@ yarn format
 ### Linter (ESLint)
 
 Para rodar o linter:
+
 ```bash
 yarn lint
 ```
